@@ -14,17 +14,17 @@ export class AppController {
 
   async conversationWebhook(@Body() dialogflowData: any) {
     return this.conversationService.conversationWebhook(dialogflowData)
-    .then((output: string) => {
-      return { fulfillmentText: output }
+    .then((actionResult: any) => {
+      return { fulfillmentText: actionResult }
     })
     
   }
 
 
-  async findByCityName(cityName: string, dialogDate: string): Promise<number> {
-    return await this.weatherService.findByCityName(cityName, dialogDate)
-      .then((degrees:any)=>{
-        return degrees
+  async findByCityName(cityName: string): Promise<number> {
+    return await this.weatherService.findByCityName(cityName)
+      .then((temperature:any)=>{
+        return temperature
       })
     }
 }
