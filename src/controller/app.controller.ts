@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Res, HttpStatus, Body } from '@nestjs/common';
-import { WeatherService } from 'src/services/weather.service';
-import { ConversationService } from 'src/services/conversation.service';
+import { WeatherService } from 'src/domain/services/weather.service';
+import { ConversationService } from 'src/domain/services/conversation.service';
 
 
 @Controller()

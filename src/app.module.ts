@@ -1,9 +1,9 @@
 import { Module, HttpModule } from '@nestjs/common';
 import { AppController } from './controller/app.controller';
 import { WeatherRepository } from './data/weather.repository';
-import { ConversationService } from './services/conversation.service';
-import { WeatherService } from './services/weather.service';
-import { TemplateProcessorService } from './services/template-processor.service'
+import { ConversationService } from './domain/services/conversation.service';
+import { WeatherService } from './domain/services/weather.service';
+import { TemplateProcessorService } from './domain/services/template-processor.service'
 
 @Module({
   imports: [HttpModule],
