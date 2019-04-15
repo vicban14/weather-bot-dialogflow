@@ -14,12 +14,11 @@ export class TemplateProcessorService {
       const variablePath = key.substring(1, key.length - 1);
       let value = '';
       let found = false;
-
+      
       contexts.forEach((context) => {
-
-        if (ObjectPath.has(context, variablePath)) {
+        if (ObjectPath.has(context, variablePath) === true) {
           value = ObjectPath.get(context, variablePath);
-          found = true;
+          found = true
           return;
         }
       });

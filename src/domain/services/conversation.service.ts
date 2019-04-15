@@ -11,7 +11,7 @@ export class ConversationService {
 
 
   async conversationWebhook(dialogflowData: any):Promise<string> {
-    const dataCity:object = dialogflowData.queryResult.parameters;
+    const dataCity:object = dialogflowData.queryResult.outputContexts[0].parameters;
     const cityName:string = dataCity['geo-city'];
     const weather:Weather = await this.weatherService.findByCityName(cityName)
 
