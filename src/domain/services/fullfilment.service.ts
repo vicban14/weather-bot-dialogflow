@@ -4,7 +4,7 @@ import { ConversationOutputDto } from "src/data/models/conversation.dtos";
 import { Fullfilment } from "../../data/models/fullfilment";
 import { View } from "../../data/models/view";
 import { Event } from "../../data/models/event";
-import { ActionResolverService } from "./actionResolverService";
+import { ActionResolverService } from "./action-resolver.service";
 
 
 

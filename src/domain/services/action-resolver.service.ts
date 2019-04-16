@@ -3,7 +3,6 @@ import { Action } from "../../data/models/action";
 import { DoNothingAction } from "./action/do-nothing.action";
 import { WeatherAction } from "./action/weather.action";
 
-
 @Injectable()
 export class ActionResolverService {
     private actionMap: any;
@@ -12,7 +11,6 @@ export class ActionResolverService {
         this.actionMap = {
             weather: this.weatherService,
             city: this.weatherService,
-            date:  this.weatherService
         }
     };
 
