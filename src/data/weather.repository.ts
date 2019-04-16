@@ -14,7 +14,7 @@ export class WeatherRepository {
 
 
   async findByCityName(cityName:string) {
-    return (this.client.get(`weather?q=${cityName}&APPID=351eb4b7ae19108f601b296a71970c27&units=metric`))
+    return this.client.get(`weather?q=${cityName}&APPID=351eb4b7ae19108f601b296a71970c27&units=metric`)
   }
 
 }

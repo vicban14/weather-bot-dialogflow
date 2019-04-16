@@ -1,23 +1,23 @@
 import { Provider } from '@nestjs/common';
-import { TemplateProcessorService } from './template-processor.service';
+import { TemplateProcessorService } from '../template-processor.service';
 import { Test, TestingModule } from '@nestjs/testing';
-import { WeatherService } from './weather.service';
-import { Weather } from '../../data/models/weather';
-import { WeatherRepository } from '../../data/weather.repository';
+import { WeatherAction} from './weather.action';
+import { Weather } from '../../../data/models/weather';
+import { WeatherRepository } from '../../../data/weather.repository';
 
 describe('WeatherService', () => {
     let module: TestingModule;
-    let service: WeatherService;
+    let service: WeatherAction;
 
     beforeAll(async () => {
         const providers: Provider[] = [
           TemplateProcessorService,
-          WeatherService,
+          WeatherAction,
           WeatherRepository,
           Weather
         ];
         module = await Test.createTestingModule({ providers }).compile();
-        service = module.get<WeatherService>(WeatherService);
+        service = module.get<WeatherAction>(WeatherAction);
       });
     
     it('should be defined', () => {
@@ -27,11 +27,11 @@ describe('WeatherService', () => {
     it('should return a function and create a Weather object', () => {
       const WeatherRepo = module.get<WeatherRepository>(WeatherRepository)
 
-      spyOn(service, 'findByCityName').and.returnValue(Promise.resolve(Weather))
+      spyOn(service, 'execute').and.returnValue(Promise.resolve(Weather))
 
       WeatherRepo.findByCityName('city')
       .then((result) => {
-        expect(service.findByCityName('Barcelona')).toEqual(Weather)
+        expect(service.execute('Barcelona')).toEqual(Weather)
       })
 
 

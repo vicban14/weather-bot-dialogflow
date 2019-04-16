@@ -1,12 +1,11 @@
 import { View } from "./view";
-import { Event } from "./events";
+import { Event } from "./event";
 
 
 export class ActionResult {
   error?: string;
   variables?: any;
-  view?: View;
+  view?: View
   event?: Event;
   skipStoreEvent?: boolean;
-  action
 }

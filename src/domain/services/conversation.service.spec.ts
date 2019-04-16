@@ -2,7 +2,9 @@ import { Provider } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { ConversationService } from './conversation.service';
 import { TemplateProcessorService } from './template-processor.service';
-import { WeatherService } from './weather.service';
+import { MapperService } from './mapper.service';
+import { WeatherAction} from './action/weather.action';
+import { ConversationOutputDto } from '../../data/models/conversation.dtos';
 import { WeatherRepository } from '../../data/weather.repository';
 import { Weather } from '../../data/models/weather';
 
@@ -13,8 +15,10 @@ describe('ConversationService', () => {
   beforeAll(async () => {
     const providers: Provider[] = [
       ConversationService,
-      WeatherService,
+      WeatherAction,
       TemplateProcessorService,
+      MapperService,
+      ConversationOutputDto,
       WeatherRepository,
       Weather
     ];
@@ -27,7 +31,7 @@ describe('ConversationService', () => {
   })
 
   it('should return an object weather', () => {
-      const weatherService = module.get<WeatherService>(WeatherService)
+      const weatherService = module.get<WeatherAction>(WeatherAction)
       const date = new Date();
       const objectWeather = {
         temperature: 1,
@@ -35,20 +39,20 @@ describe('ConversationService', () => {
         date: date
       } 
 
-      spyOn(weatherService, 'findByCityName').and.returnValue(objectWeather)
+      spyOn(weatherService, 'execute').and.returnValue(objectWeather)
 
-      expect(weatherService.findByCityName('city')).toEqual({
+      expect(weatherService.execute('city')).toEqual({
         temperature: 1,
         cityName: 'city',
         date: date
       });
     })
 
-  it ('should return the temperature number', () => {
-    const result = service.responseParameter(1)
+  // it ('should return the temperature number', () => {
+  //   const result = service.responseParameter(1)
 
-    expect(result).toEqual({ parameters: { temperature: 1 } })
-  })
+  //   expect(result).toEqual({ parameters: { temperature: 1 } })
+  // })
      
   it ('should return the response as a string that have changed the %word% by temperature', () => {
   const templateProcessor = module.get<TemplateProcessorService>(TemplateProcessorService)

@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Res, HttpStatus, Body } from '@nestjs/common';
-import { WeatherService } from 'src/domain/services/weather.service';
+import { WeatherAction } from 'src/domain/services/action/weather.action';
 import { ConversationService } from 'src/domain/services/conversation.service';
 
 
@@ -7,7 +7,7 @@ import { ConversationService } from 'src/domain/services/conversation.service';
 export class AppController {
   apiArray: Array<object>;
 
-  constructor(private readonly weatherService: WeatherService, private readonly conversationService: ConversationService) {
+  constructor(private readonly weatherService: WeatherAction, private readonly conversationService: ConversationService) {
   }
 
   @Post('/webhook')
@@ -22,7 +22,7 @@ export class AppController {
 
 
   async findByCityName(cityName: string): Promise<number> {
-    return await this.weatherService.findByCityName(cityName)
+    return await this.weatherService.execute(cityName)
       .then((temperature:any)=>{
         return temperature
       })

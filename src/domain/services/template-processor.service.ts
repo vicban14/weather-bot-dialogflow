@@ -16,7 +16,7 @@ export class TemplateProcessorService {
       let found = false;
       
       contexts.forEach((context) => {
-        if (ObjectPath.has(context, variablePath) === true) {
+        if (ObjectPath.has(context, variablePath)) {
           value = ObjectPath.get(context, variablePath);
           found = true
           return;
