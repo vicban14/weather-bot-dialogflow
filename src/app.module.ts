@@ -9,6 +9,8 @@ import { ActionResolverService } from './domain/services/action-resolver.service
 import { ConversationOutputDto } from './data/models/conversation.dtos';
 import { FullfilmentService } from './domain/services/fullfilment.service';
 import { DoNothingAction } from './domain/services/action/do-nothing.action';
+import { JokesAction } from './domain/services/action/jokes.action';
+import { JokesRepository } from './data/jokes.respository';
 
 
 @Module({
@@ -22,6 +24,8 @@ import { DoNothingAction } from './domain/services/action/do-nothing.action';
     ActionResolverService, 
     ConversationOutputDto,
     DoNothingAction,
-    FullfilmentService,],
+    FullfilmentService,
+    JokesAction,
+    JokesRepository],
 })
 export class AppModule {}

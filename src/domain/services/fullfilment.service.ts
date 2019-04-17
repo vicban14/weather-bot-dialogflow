@@ -44,5 +44,6 @@ export class FullfilmentService {
             data: view,
             action: actionReady ? fullfilment.action : undefined
         };
+        
     }
 }

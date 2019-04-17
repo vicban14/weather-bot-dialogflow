@@ -13,12 +13,10 @@ export class ConversationService {
 
 
   async conversationWebhook(dialogflowData: any) {
-    const fullfilment = await this.mapperService.mapEvent(dialogflowData)
-    console.log(fullfilment)
+    const fullfilment = await this.mapperService.mapEvent(dialogflowData);
     let conversationOutputDto: ConversationOutputDto = null;
 
     conversationOutputDto = await this.fullfilmentService.process(fullfilment);
-    console.log(2, conversationOutputDto.text)
     return conversationOutputDto.text
 
   }
